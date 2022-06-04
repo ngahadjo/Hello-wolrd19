@@ -1,29 +1,22 @@
 pipeline {
     agent any
-
+    tools { 
+        maven 'Maven 3.5.4' 
+        jdk 'jdk8' 
+    }
     stages {
-        stage('build') {
+        stage ('Initialize') {
             steps {
-                echo 'Hello build'
-                sleep 10
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
             }
         }
-         stage('test') {
+
+        stage ('Build') {
             steps {
-                echo 'Hello test'
-                sleep 5
-            }
-        }
-         stage('deploy') {
-            steps {
-                echo 'Hello deploy'
-                sh 'pwd'
-            }
-        }
-         stage('push') {
-            steps {
-                echo 'Hello push'
-                sh 'docker ps'
+                echo 'This is a minimal pipeline.'
             }
         }
     }
